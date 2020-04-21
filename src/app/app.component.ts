@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from './../services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pizza';
+
+  constructor(
+    private cartService: CartService
+  ) { }
+
+  public getCartLength() {
+    return this.cartService.getCartLength();
+  }
 }

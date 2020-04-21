@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from './../../../services/inventory.service';
+import { CartService } from './../../../services/cart.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +12,10 @@ export class MenuComponent implements OnInit {
 
   menu = [];
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     this.getMenu();
@@ -24,7 +29,7 @@ export class MenuComponent implements OnInit {
   }
 
   public addToCart (i) {
-    console.info(i);
+    this.cartService.addToCart(this.menu[i]);
   }
 
 }
