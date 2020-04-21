@@ -1,0 +1,12 @@
+.my-cart-label {
+    font-size: 10px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    position: relative;
+    left: -5px;
+    top: -10px;
+}
