@@ -1,1 +1,17 @@
-[{"test": "yes"}]
+[
+  {
+    "name": "Margaritha",
+    "description": "The great choice of large classic pizza",
+    "price": "8"
+  },
+  {
+    "name": "Pepperoni",
+    "description": "Pizza with perfect pepperoni",
+    "price": "10"
+  },
+  {
+    "name": "Quattro Formagi",
+    "description": "Four cheeses on a pizza",
+    "price": "14"
+  }
+]

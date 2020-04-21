@@ -8,7 +8,7 @@ export class ServerService {
 
   constructor(public http: HttpClient) { }
 
-  test(){
+  getMenu(){
     return this.http.get('./assets/data/test.json');
   }
 

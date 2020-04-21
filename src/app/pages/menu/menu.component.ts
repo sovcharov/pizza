@@ -8,16 +8,23 @@ import { InventoryService } from './../../../services/inventory.service';
 })
 export class MenuComponent implements OnInit {
 
+  menu = [];
+
   constructor(private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
-    this.test();
+    this.getMenu();
   }
 
-  public test() {
-    this.inventoryService.test(data => {
-      console.log(data)
+  public getMenu() {
+    this.inventoryService.getMenu(data => {
+      console.info(data);
+      this.menu = data;
     });
+  }
+
+  public addToCart (i) {
+    console.info(i);
   }
 
 }

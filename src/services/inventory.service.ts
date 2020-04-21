@@ -9,8 +9,8 @@ export class InventoryService {
   constructor(private serverService: ServerService) { }
   menu = [];
 
-  public test (callback) {
-    this.serverService.test().subscribe(res=>{
+  public getMenu (callback) {
+    this.serverService.getMenu().subscribe(res=>{
       callback(res);
     });
   }
