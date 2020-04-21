@@ -20,7 +20,15 @@
     </div>
     </div>
     <div *ngIf = "getCartLength()" class="col-md-2">
-      Order Summary:
+      <div class="card border-secondary mb-3" style="width: 10rem;">
+        <div class="card-header">Cart Summary</div>
+        <div class="card-body text-secondary">
+          <p class="card-text">Total Items: {{getCartLength()}}</p>
+          <p class="card-text">Total qty: {{getCartQty()}}</p>
+          <p class="card-text">Order total: {{getCartSum()}}</p>
+          <a routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
+        </div>
+      </div>
     </div>
   </div>
 

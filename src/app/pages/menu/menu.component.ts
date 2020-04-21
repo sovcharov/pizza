@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService } from './../../../services/inventory.service';
 import { CartService } from './../../../services/cart.service';
 
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -33,6 +32,14 @@ export class MenuComponent implements OnInit {
 
   public getCartLength() {
     return this.cartService.getCartLength();
-  }  
+  }
+
+  public getCartQty() {
+    return this.cartService.getCartQty();
+  }
+
+  public getCartSum() {
+    return this.cartService.getCartSum();
+  }
 
 }
