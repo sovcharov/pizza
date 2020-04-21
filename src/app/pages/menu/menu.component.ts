@@ -31,4 +31,8 @@ export class MenuComponent implements OnInit {
     this.cartService.addToCart(this.menu[i]);
   }
 
+  public getCartLength() {
+    return this.cartService.getCartLength();
+  }  
+
 }

@@ -1,6 +1,8 @@
 <div class = "container">
   <h1>Menu</h1>
+
   <div class="row">
+    <div class = "col-md-10" [ngClass]="{'col-md-12': !getCartLength(), 'col-md-10': getCartLength() }">
     <div class="row row-cols-1 row-cols-md-4">
       <ng-container class="col-mb4" *ngFor = "let pizza of menu; let i = index" >
         <div class="card-group">
@@ -16,5 +18,10 @@
         </div>
       </ng-container>
     </div>
+    </div>
+    <div *ngIf = "getCartLength()" class="col-md-2">
+      Order Summary:
+    </div>
   </div>
+
 </div>
