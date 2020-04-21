@@ -7,12 +7,24 @@ import { ServerService } from './server.service';
 export class InventoryService {
 
   constructor(private serverService: ServerService) { }
-  menu = [];
+  public menu: any = [];
 
-  public getMenu (callback) {
+  private loadMenu (callback) {
     this.serverService.getMenu().subscribe(res=>{
       callback(res);
     });
   }
+
+  public getMenu (callback) {
+    if (this.menu.length) {
+      callback(this.menu);
+    } else {
+      this.loadMenu((data)=>{
+        this.menu = data;
+        callback(this.menu);
+      });
+    }
+  }
+
 
 }

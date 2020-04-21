@@ -22,8 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   public getMenu() {
-    this.inventoryService.getMenu(data => {
-      console.info(data);
+    return this.inventoryService.getMenu(data => {
       this.menu = data;
     });
   }
