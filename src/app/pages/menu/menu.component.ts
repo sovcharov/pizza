@@ -38,6 +38,10 @@ export class MenuComponent implements OnInit {
     return this.cartService.getCartQty();
   }
 
+  public getCartShipping() {
+    return this.cartService.getCartQty();
+  }
+
   public getCartSum() {
     return this.cartService.getCartSum();
   }

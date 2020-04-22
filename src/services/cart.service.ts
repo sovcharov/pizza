@@ -42,12 +42,19 @@ export class CartService {
     return qty;
   }
 
+  public getCartShipping() {
+    let flatRate = 5;
+    let shippingCostOnePizza = 0.5;
+    let qty = this.getCartQty();
+    return qty ? qty * shippingCostOnePizza + flatRate : 0;
+  }
+
   public getCartSum() {
     let sum = 0;
     for(let i = 0; i < this.cart.length; i += 1) {
       sum += (parseFloat(this.cart[i].price)*parseFloat(this.cart[i].qty));
     }
-    return sum;
+    return (sum>=30) ? sum : sum + this.getCartShipping();
   }
 
 
