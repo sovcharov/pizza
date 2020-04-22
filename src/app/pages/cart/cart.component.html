@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<div class = "container">
+  <h1>Cart</h1>
+  <p  *ngIf = "!cart.length">Your Cart is empty!</p>
+  <div *ngIf = "cart.length" class="row">
+    <div class = "col-md-10" [ngClass]="{'col-md-12': !getCartLength(), 'col-md-10': getCartLength() }">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pizza</th>
+            <th scope="col">Price</th>
+            <th scope="col">Qty</th>
+          </tr>
+        </thead>
+        <ng-container class="" *ngFor = "let pizza of cart; let i = index" >
+          <tr>
+            <th scope="row">{{i}}</th>
+            <td>{{getPizzaName(pizza.itemId)}}</td>
+            <td>{{pizza.price}}</td>
+            <td>{{pizza.qty}}</td>
+          </tr>
+        </ng-container>
+
+      </table>
+    </div>
+    <div *ngIf = "getCartLength()" class="col-md-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">$</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">€</label>
+      </div>
+      <div class="card border-secondary mb-3" style="width: 10rem;">
+        <div class="card-header">Cart Summary</div>
+        <div class="card-body text-secondary">
+          <p class="card-text">Total Items: {{getCartLength()}}</p>
+          <p class="card-text">Total qty: {{getCartQty()}}</p>
+          <p class="card-text">Order total: {{getCartSum()}}</p>
+          <a routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

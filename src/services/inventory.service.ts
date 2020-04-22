@@ -26,5 +26,13 @@ export class InventoryService {
     }
   }
 
+  public getNameById (id) {
+      for (let i = 0; i < this.menu.length; i += 1) {
+        if (this.menu[i].id === id) {
+          return this.menu[i].name;
+        }
+      }
+  }
+
 
 }

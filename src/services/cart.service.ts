@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
 import { InventoryService } from './inventory.service';
 
+interface CartItem {
+  itemId: string,
+  qty: number,
+  price: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cart = [];
+  cart: CartItem[] = [];
 
   constructor(
     private inventoryService: InventoryService,
   ) { }
+
+  public getCart () {
+    return this.cart;
+  }
 
   public addToCart (item) {
     if(this.cart.length) {
@@ -22,10 +32,10 @@ export class CartService {
         }
       }
       if (!found) {
-        this.cart[this.cart.length] = {itemId: item.id, qty: 1, price: item.price};
+        this.cart[this.cart.length] = {itemId: (item.id), qty: 1, price: parseFloat(item.price)};
       }
     } else {
-      this.cart[this.cart.length] = {itemId: item.id, qty: 1, price: item.price};
+      this.cart[this.cart.length] = {itemId: (item.id), qty: 1, price: parseFloat(item.price)};
     }
     console.log(this.cart);
   }
@@ -37,7 +47,7 @@ export class CartService {
   public getCartQty() {
     let qty = 0;
     for(let i = 0; i < this.cart.length; i += 1) {
-      qty += parseFloat(this.cart[i].qty);
+      qty += (this.cart[i].qty);
     }
     return qty;
   }
@@ -52,7 +62,7 @@ export class CartService {
   public getCartSum() {
     let sum = 0;
     for(let i = 0; i < this.cart.length; i += 1) {
-      sum += (parseFloat(this.cart[i].price)*parseFloat(this.cart[i].qty));
+      sum += ((this.cart[i].price)*(this.cart[i].qty));
     }
     return (sum>=30) ? sum : sum + this.getCartShipping();
   }
