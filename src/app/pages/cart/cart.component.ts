@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from './../../../services/inventory.service';
 import { CartService } from './../../../services/cart.service';
+import { CurrencyService } from './../../../services/currency.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,18 +11,24 @@ import { CartService } from './../../../services/cart.service';
 export class CartComponent implements OnInit {
 
   public cart = [];
-
+  public currencies = [];
   constructor(
     private inventoryService: InventoryService,
-    private cartService: CartService
+    private cartService: CartService,
+    private currencyService: CurrencyService
   ) { }
 
   ngOnInit(): void {
     this.getCart();
+    this.getCurrencies();
   }
 
   private getCart() {
     this.cart = this.cartService.getCart();
+  }
+
+  private getCurrencies() {
+    this.currencies = this.currencyService.getAllCurrencies();
   }
 
   public getPizzaName (id) {
@@ -43,5 +50,11 @@ export class CartComponent implements OnInit {
   public getCartSum() {
     return this.cartService.getCartSum();
   }
+
+  public setCurrency(id) {
+    this.currencyService.setActiveCurrency(id);
+  }
+
+
 
 }
