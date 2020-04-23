@@ -12,6 +12,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartSummaryComponent } from './pages/cart-summary/cart-summary.component';
 import { OrderPlaceComponent } from './pages/order-place/order-place.component';
+import { AlertComponent } from './pages/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OrderPlaceComponent } from './pages/order-place/order-place.component';
     OrdersComponent,
     CartComponent,
     CartSummaryComponent,
-    OrderPlaceComponent
+    OrderPlaceComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
