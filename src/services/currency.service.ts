@@ -61,7 +61,7 @@ export class CurrencyService {
   }
 
   public getPriceInActiveCurrency (basePrice) {
-    return basePrice / this.activeCurrency.UsdPerCurrency;
+    return (Math.round((basePrice / this.activeCurrency.UsdPerCurrency) * 100) / 100).toFixed(2);
   }
 
   public getActiveCurrenyMark () {

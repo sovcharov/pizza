@@ -2,30 +2,48 @@
   <h1>Menu</h1>
 
   <div class="row">
-    <div class = "col-md-10" [ngClass]="{'col-md-12': !getCartLength(), 'col-md-10': getCartLength() }">
-    <div class="row row-cols-1 row-cols-md-4">
-      <ng-container class="col-mb4" *ngFor = "let pizza of menu; let i = index" >
-        <div class="card-group">
-          <div class="card h-80" style="width: 30rem; margin-left: 5px;">
-            <img src="./assets/images/pizzaBig.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ pizza.name }}</h5>
-              <p class="card-text">{{ pizza.description }}</p>
-              <p class="card-text">Price: {{ getPriceInActiveCurrency(pizza.price)}} {{getActiveCurrenyMark()}}</p>
-              <button class="btn btn-primary" (click)="addToCart(i)">Add to cart</button>
+    <div class = "col-md-10">
+      <div class="row row-cols-1 row-cols-md-4">
+        <ng-container class="col-mb4" *ngFor = "let pizza of menu; let i = index" >
+          <div class="card-group">
+            <div class="card h-80" style="width: 30rem; margin-left: 5px;">
+              <img src="./assets/images/pizzaBig.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ pizza.name }}</h5>
+                <p class="card-text">{{ pizza.description }}</p>
+                <p class="card-text">Price: {{ getPriceInActiveCurrency(pizza.price)}} {{getActiveCurrenyMark()}}</p>
+                <button class="btn btn-primary" (click)="addToCart(i)">Add to cart</button>
+              </div>
             </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
-    </div>
-    <div *ngIf = "getCartLength()" class="col-md-2">
+    <div class="col-md-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+          [checked]="currencies[0].active"
+          (change)="setCurrency(0)"
+           id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">$</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+          [checked]="currencies[1].active"
+          (change)="setCurrency(1)"
+         id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">€</label>
+      </div>
       <div class="card border-secondary mb-3" style="width: 10rem;">
         <div class="card-header">Cart Summary</div>
         <div class="card-body text-secondary">
           <p class="card-text">Total Items: {{getCartLength()}}</p>
           <p class="card-text">Total qty: {{getCartQty()}}</p>
-          <p class="card-text">Order total: {{getCartSum()}}</p>
+          <p class="card-text">
+            <span *ngIf = "getCartShipping() || !getCartLength()">Shipping: {{getPriceInActiveCurrency(getCartShipping())}} {{getActiveCurrenyMark()}}</span>
+            <span *ngIf = "!getCartShipping() && getCartLength()">Free</span>
+          </p>
+          <p class="card-text">Order total: {{getCartSum()}} {{getActiveCurrenyMark()}}</p>
           <a routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
         </div>
       </div>

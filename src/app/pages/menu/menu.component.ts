@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
 
   menu = [];
   activeCurrency: any;
+  public currencies = [];
 
   constructor(
     private inventoryService: InventoryService,
@@ -22,12 +23,18 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMenu();
+    this.getCurrencies();
+
   }
 
   public getMenu() {
     return this.inventoryService.getMenu(data => {
       this.menu = data;
     });
+  }
+
+  private getCurrencies() {
+    this.currencies = this.currencyService.getAllCurrencies();
   }
 
   public addToCart (i) {
@@ -47,7 +54,7 @@ export class MenuComponent implements OnInit {
   }
 
   public getCartSum() {
-    return this.cartService.getCartSum();
+    return this.getPriceInActiveCurrency(this.cartService.getCartSum());
   }
 
   public getActiveCurrency () {
@@ -55,11 +62,15 @@ export class MenuComponent implements OnInit {
   }
 
   public getPriceInActiveCurrency (basePrice) {
-    return (Math.round(this.currencyService.getPriceInActiveCurrency(basePrice) * 100) / 100).toFixed(2);
+    return this.currencyService.getPriceInActiveCurrency(basePrice);
   }
 
   public getActiveCurrenyMark () {
     return this.currencyService.getActiveCurrenyMark();
+  }
+
+  public setCurrency(id) {
+    this.currencyService.setActiveCurrency(id);
   }
 
 }

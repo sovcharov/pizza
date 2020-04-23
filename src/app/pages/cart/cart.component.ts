@@ -48,13 +48,19 @@ export class CartComponent implements OnInit {
   }
 
   public getCartSum() {
-    return this.cartService.getCartSum();
+    return this.getPriceInActiveCurrency(this.cartService.getCartSum());
   }
 
   public setCurrency(id) {
     this.currencyService.setActiveCurrency(id);
   }
 
+  public getPriceInActiveCurrency (basePrice) {
+    return this.currencyService.getPriceInActiveCurrency(basePrice);
+  }
 
+  public getActiveCurrenyMark () {
+    return this.currencyService.getActiveCurrenyMark();
+  }
 
 }

@@ -16,7 +16,7 @@
           <tr>
             <th scope="row">{{i}}</th>
             <td>{{getPizzaName(pizza.itemId)}}</td>
-            <td>{{pizza.price}}</td>
+            <td>{{getPriceInActiveCurrency(pizza.price)}}</td>
             <td>{{pizza.qty}}</td>
           </tr>
         </ng-container>
@@ -43,7 +43,11 @@
         <div class="card-body text-secondary">
           <p class="card-text">Total Items: {{getCartLength()}}</p>
           <p class="card-text">Total qty: {{getCartQty()}}</p>
-          <p class="card-text">Order total: {{getCartSum()}}</p>
+          <p class="card-text">
+            <span *ngIf = "getCartShipping() || !getCartLength()">Shipping: {{getPriceInActiveCurrency(getCartShipping())}} {{getActiveCurrenyMark()}}</span>
+            <span *ngIf = "!getCartShipping() && getCartLength()">Free</span>
+          </p>
+          <p class="card-text">Order total: {{getCartSum()}} {{getActiveCurrenyMark()}}</p>
           <a routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
         </div>
       </div>

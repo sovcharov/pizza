@@ -53,10 +53,23 @@ export class CartService {
   }
 
   public getCartShipping() {
-    let flatRate = 5;
-    let shippingCostOnePizza = 0.5;
-    let qty = this.getCartQty();
-    return qty ? qty * shippingCostOnePizza + flatRate : 0;
+    if (this.getCartSumWithoutShipping()<30) {
+      let flatRate = 5;
+      let shippingCostOnePizza = 0.5;
+      let qty = this.getCartQty();
+      return qty ? qty * shippingCostOnePizza + flatRate : 0;
+    } else {
+      return 0;
+    }
+
+  }
+
+  private getCartSumWithoutShipping () {
+    let sum = 0;
+    for(let i = 0; i < this.cart.length; i += 1) {
+      sum += ((this.cart[i].price)*(this.cart[i].qty));
+    }
+    return sum;
   }
 
   public getCartSum() {
