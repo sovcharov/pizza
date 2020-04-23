@@ -28,14 +28,24 @@ export class CurrencyService {
       active: true,
       UsdPerCurrency: 1.1
     }
-  ]
+  ];
 
-  constructor() { }
+  private activeCurrency: Currency;
+
+  constructor() {
+    for(let i = 0; i < this.currencies.length; i += 1) {
+      if (this.currencies[i].active) {
+        this.activeCurrency = this.currencies[i];
+      }
+    }
+  }
+
 
   public setActiveCurrency (id) {
     for(let i = 0; i < this.currencies.length; i += 1) {
       if (this.currencies[i].id === id) {
         this.currencies[i].active = true;
+        this.activeCurrency = this.currencies[i];
       } else {
         this.currencies[i].active = false;
       }
@@ -46,6 +56,16 @@ export class CurrencyService {
     return this.currencies;
   }
 
+  public getActiveCurrency () {
+    return this.activeCurrency;
+  }
 
+  public getPriceInActiveCurrency (basePrice) {
+    return basePrice / this.activeCurrency.UsdPerCurrency;
+  }
+
+  public getActiveCurrenyMark () {
+    return this.activeCurrency.mark;
+  }
 
 }
