@@ -12,7 +12,7 @@
                 <h5 class="card-title">{{ pizza.name }}</h5>
                 <p class="card-text">{{ pizza.description }}</p>
                 <p class="card-text">Price: {{ getPriceInActiveCurrency(pizza.price)}} {{getActiveCurrenyMark()}}</p>
-                <button class="btn btn-primary" (click)="addToCart(i)">Add to cart</button>
+                <button class="btn btn-outline-primary" (click)="addToCart(i)">Add to cart</button>
               </div>
             </div>
           </div>
@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="form-check form-check-inline">
         <app-cart-summary></app-cart-summary>
+        <a *ngIf = "getCartLength()" routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
     </div>
   </div>
 

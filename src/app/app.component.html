@@ -23,7 +23,7 @@
     User: John Doe
   </span>
   <a class="nav-link" routerLink="cart">
-    <i style="font-size:22px" class="fa fa-shopping-cart"></i><span class="my-cart-label">{{getCartLength()}}</span>
+    <i style="font-size:22px" class="fa fa-shopping-cart"></i><span *ngIf = "getCartLength()" class="my-cart-label">{{getCartLength()}}</span>
   </a>
 </nav>
 <router-outlet></router-outlet>

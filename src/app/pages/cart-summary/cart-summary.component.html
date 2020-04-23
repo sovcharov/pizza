@@ -13,16 +13,15 @@
    id="inlineRadio2" value="option2">
   <label class="form-check-label" for="inlineRadio2">€</label>
 </div>
-<div class="card border-secondary mb-3" style="width: 10rem;">
+<div *ngIf = "getCartLength()" class="card border-secondary mb-3" style="width: 10rem;">
   <div class="card-header">Cart Summary</div>
   <div class="card-body text-secondary">
     <p class="card-text">Total Items: {{getCartLength()}}</p>
     <p class="card-text">Total qty: {{getCartQty()}}</p>
     <p class="card-text">
-      <span *ngIf = "getCartShipping() || !getCartLength()">Shipping: {{getPriceInActiveCurrency(getCartShipping())}} {{getActiveCurrenyMark()}}</span>
+      <span *ngIf = "getCartShipping() || !getCartLength()">Shipping:<p> {{getPriceInActiveCurrency(getCartShipping())}} {{getActiveCurrenyMark()}}</p></span>
       <span *ngIf = "!getCartShipping() && getCartLength()">Shipping: Free</span>
     </p>
     <p class="card-text">Order total: {{getCartSum()}} {{getActiveCurrenyMark()}}</p>
-    <a routerLink="/cart" class="btn btn-primary btn-sm">Order Now</a>
   </div>
 </div>

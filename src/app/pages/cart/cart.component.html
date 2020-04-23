@@ -1,6 +1,7 @@
 <div class = "container">
   <h1>Cart</h1>
   <p  *ngIf = "!cart.length">Your Cart is empty!</p>
+  <a *ngIf = "!cart.length" routerLink="/menu" class="btn btn-outline-primary btn-sm">Choose your pizza here</a>
   <div *ngIf = "cart.length" class="row">
     <div class = "col-md-10" [ngClass]="{'col-md-12': !getCartLength(), 'col-md-10': getCartLength() }">
       <table class="table">
@@ -22,6 +23,11 @@
         </ng-container>
 
       </table>
+
+      <div *ngIf = "getCartLength()">
+        <button routerLink="/menu" class="btn btn-outline-primary btn-sm my-button">Continue Shopping</button>
+        <button routerLink="/placeorder" class="btn btn-primary btn-sm my-button">Place Order</button>
+      </div>
     </div>
     <div *ngIf = "getCartLength()" class="col-md-2">
       <app-cart-summary></app-cart-summary>
