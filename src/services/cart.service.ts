@@ -37,7 +37,7 @@ export class CartService {
     } else {
       this.cart[this.cart.length] = {itemId: (item.id), qty: 1, price: parseFloat(item.price)};
     }
-    console.log(this.cart);
+    // console.log(this.cart);
   }
 
   public getCartLength() {

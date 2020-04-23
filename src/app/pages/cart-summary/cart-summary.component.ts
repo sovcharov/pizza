@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryService } from './../../../services/inventory.service';
 import { CartService } from './../../../services/cart.service';
 import { CurrencyService } from './../../../services/currency.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-cart-summary',
+  templateUrl: './cart-summary.component.html',
+  styleUrls: ['./cart-summary.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartSummaryComponent implements OnInit {
 
-  public cart = [];
+  public currencies = [];
+
   constructor(
-    private inventoryService: InventoryService,
     private cartService: CartService,
     private currencyService: CurrencyService
   ) { }
 
   ngOnInit(): void {
-    this.getCart();
+    this.getCurrencies();
   }
 
-  private getCart() {
-    this.cart = this.cartService.getCart();
-  }
-
-
-
-  public getPizzaName (id) {
-    return this.inventoryService.getNameById(id);
+  private getCurrencies() {
+    this.currencies = this.currencyService.getAllCurrencies();
   }
 
   public getCartLength() {
@@ -47,11 +40,11 @@ export class CartComponent implements OnInit {
     return this.getPriceInActiveCurrency(this.cartService.getCartSum());
   }
 
-  public setCurrency(id) {
+  public setCurrency(id: number) {
     this.currencyService.setActiveCurrency(id);
   }
 
-  public getPriceInActiveCurrency (basePrice) {
+  public getPriceInActiveCurrency (basePrice: number) {
     return this.currencyService.getPriceInActiveCurrency(basePrice);
   }
 
