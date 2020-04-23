@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../../services/user.service';
 import { CartService } from './../../../services/cart.service';
+import { AlertService } from './../../../services/alert.service';
 
 @Component({
   selector: 'app-order-place',
@@ -11,7 +12,9 @@ export class OrderPlaceComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private alertService: AlertService
+
   ) { }
 
   user = {
@@ -33,8 +36,16 @@ export class OrderPlaceComponent implements OnInit {
   }
 
   public testNumber () {
-    let pattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+    let pattern = /^\+[0-9]{7,12}$/g;
     return pattern.test(this.user.phone);
+  }
+
+  public placeOrder() {
+    if (this.testNumber()) {
+
+    } else {
+      this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone',comment: 'Mistake in number',});
+    }
   }
 
 }
