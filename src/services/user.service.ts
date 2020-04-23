@@ -17,7 +17,7 @@ export class UserService {
     firstName: "John",
     lastName: "Doe",
     address: "123 Main st. #12, leave at the door",
-    currency: 1,
+    currency: 0,
     phone: ""
   }
 
@@ -26,4 +26,10 @@ export class UserService {
   public getUser () {
     return this.user;
   }
+
+  public getUserCurrency(callback) {
+    callback(this.user.currency);
+  }
+
+
 }

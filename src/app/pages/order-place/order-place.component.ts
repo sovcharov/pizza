@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../../services/user.service';
-
+import { CartService } from './../../../services/cart.service';
 
 @Component({
   selector: 'app-order-place',
@@ -10,17 +10,22 @@ import { UserService } from './../../../services/user.service';
 export class OrderPlaceComponent implements OnInit {
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
   ) { }
 
   user = {
-    address: "Mani st 23"
-  }
+    address: "",
+    phone: ""
+  };
 
-  phone: string = "";
 
   ngOnInit(): void {
     this.getUser();
+  }
+
+  getCartLength () {
+    return this.cartService.getCartLength();
   }
 
   getUser() {
@@ -29,7 +34,7 @@ export class OrderPlaceComponent implements OnInit {
 
   public testNumber () {
     let pattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
-    return pattern.test(this.phone);
+    return pattern.test(this.user.phone);
   }
 
 }

@@ -1,7 +1,8 @@
 <div class = "container">
   <h1>Place your order</h1>
-
-  <div class="row">
+  <p  *ngIf = "!getCartLength()">Your Cart is empty!</p>
+  <a *ngIf = "!getCartLength()" routerLink="/menu" class="btn btn-outline-primary btn-sm">Choose your pizza here</a>
+  <div class="row" *ngIf = "getCartLength()">
     <div class = "col-md-10">
       <form>
         <div class="form-group">
@@ -10,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="inputPhone">Contact Phone:</label>
-          <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="phone" [ngClass] = "{'is-invalid': !testNumber(), 'is-valid': testNumber()}" placeholder="Phone" name = "phone">
+          <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="user.phone" [ngClass] = "{'is-invalid': !testNumber(), 'is-valid': testNumber()}" placeholder="Phone" name = "phone">
         </div>
       </form>
       <button class="btn btn-primary">Confirm order</button>

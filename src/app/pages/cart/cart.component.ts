@@ -25,8 +25,6 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getCart();
   }
 
-
-
   public getPizzaName (id) {
     return this.inventoryService.getNameById(id);
   }

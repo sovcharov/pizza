@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserService } from './user.service';
 
 interface Currency {
   id: number
@@ -32,12 +33,14 @@ export class CurrencyService {
 
   private activeCurrency: Currency;
 
-  constructor() {
-    for(let i = 0; i < this.currencies.length; i += 1) {
-      if (this.currencies[i].active) {
-        this.activeCurrency = this.currencies[i];
-      }
-    }
+  constructor(
+    private userService: UserService
+  )
+  {
+    this.userService.getUserCurrency((currencyId)=>{
+      this.setActiveCurrency(currencyId);
+    })
+
   }
 
 
