@@ -18,7 +18,7 @@ export class UserService {
     lastName: "Doe",
     address: "123 Main st. #12, leave at the door",
     currency: 1,
-    phone: "+79119269689"
+    phone: ""
   }
 
   constructor() { }

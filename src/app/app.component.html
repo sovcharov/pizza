@@ -20,7 +20,7 @@
     </ul>
   </div>
   <span class="navbar-text">
-    User: John Doe
+    User: {{getUserFirstLast()}}
   </span>
   <a class="nav-link" routerLink="cart">
     <i style="font-size:22px" class="fa fa-shopping-cart"></i><span *ngIf = "getCartLength()" class="my-cart-label">{{getCartLength()}}</span>
