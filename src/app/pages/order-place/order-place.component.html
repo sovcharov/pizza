@@ -2,7 +2,7 @@
   <h1>Place your order</h1>
   <p  *ngIf = "!getCartLength()">Your Cart is empty!</p>
   <a *ngIf = "!getCartLength()" routerLink="/menu" class="btn btn-outline-primary btn-sm">Choose your pizza here</a>
-  <div class="row" *ngIf = "!getCartLength()">
+  <div class="row" *ngIf = "getCartLength()">
     <div class = "col-md-10">
       <form>
         <div class="form-group">
@@ -15,9 +15,7 @@
         </div>
       </form>
       <button (click)="placeOrder()" class="btn btn-primary">Confirm order</button>
-
     </div>
-
     <div class="col-md-2">
         <app-cart-summary></app-cart-summary>
     </div>

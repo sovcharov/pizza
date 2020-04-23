@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../../services/user.service';
 import { CartService } from './../../../services/cart.service';
 import { AlertService } from './../../../services/alert.service';
+import { OrdersService } from './../../../services/orders.service';
+
 
 @Component({
   selector: 'app-order-place',
@@ -13,7 +15,8 @@ export class OrderPlaceComponent implements OnInit {
   constructor(
     private userService: UserService,
     private cartService: CartService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private ordersService: OrdersService
 
   ) { }
 
@@ -42,9 +45,11 @@ export class OrderPlaceComponent implements OnInit {
 
   public placeOrder() {
     if (this.testNumber()) {
+      this.ordersService.placeOrder(this.cartService.getCart(), (data) => {
 
+      });
     } else {
-      this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone',comment: 'Mistake in number',});
+      this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Mistake in number',});
     }
   }
 
