@@ -71,4 +71,12 @@ export class CurrencyService {
     return this.activeCurrency.mark;
   }
 
+  public getCurrencyMark (id) {
+    for(let i = 0; i < this.currencies.length; i += 1) {
+      if (this.currencies[i].id === id) {
+        return this.currencies[i].mark;
+      }
+    }
+  }
+
 }

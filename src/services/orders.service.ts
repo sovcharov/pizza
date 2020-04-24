@@ -6,9 +6,13 @@ import { ServerService } from './server.service';
 })
 export class OrdersService {
 
+  orders: any = [];
+
   constructor(
     private serverService: ServerService
-  ) { }
+  ) {
+
+  }
 
   public placeOrder(order, callback) {
     // this.serverService.placeOrder(cart).subscribe(res=>{
@@ -17,7 +21,17 @@ export class OrdersService {
   }
 
   public getOrders (user, callback) {
+    this.serverService.getOrders(user).subscribe(res=>{
+      console.log(res);
+      this.orders = res;
+      callback(res);
+    });
+  }
+
+  public getOrder (user, callback) {
     // this.serverService.getOrders(user).subscribe(res=>{
+    //   console.log(res);
+    //   this.orders = res;
     //   callback(res);
     // });
   }

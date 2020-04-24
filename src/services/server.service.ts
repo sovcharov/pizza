@@ -9,7 +9,7 @@ export class ServerService {
   constructor(public http: HttpClient) { }
 
   public getMenu(){
-    return this.http.get('./assets/data/test.json');
+    return this.http.get('./assets/data/testMenu.json');
   }
 
   public placeOrder (order) {
@@ -17,7 +17,11 @@ export class ServerService {
   }
 
   public getOrders (user) {
-    // return this.http.get('./assets/data/test.json');
+    return this.http.get('./assets/data/testOrders.json');
+  }
+
+  public getOrder (orderId) {
+    //return this.http.get('./assets/data/test.json');
   }
 
 }
