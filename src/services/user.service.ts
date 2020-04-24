@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 interface User {
+  id,
   firstName: string,
   lastName: string,
   address: string,
@@ -14,11 +15,12 @@ interface User {
 export class UserService {
 
   private user: User = {
+    id: 0,
     firstName: "John",
     lastName: "Doe",
     address: "123 Main st. #12, leave at the door",
     currency: 0,
-    phone: ""
+    phone: "+79113332211"
   }
 
   constructor() { }

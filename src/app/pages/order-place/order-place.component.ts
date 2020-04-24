@@ -3,6 +3,7 @@ import { UserService } from './../../../services/user.service';
 import { CartService } from './../../../services/cart.service';
 import { AlertService } from './../../../services/alert.service';
 import { OrdersService } from './../../../services/orders.service';
+import { CurrencyService } from './../../../services/currency.service';
 
 
 @Component({
@@ -16,7 +17,9 @@ export class OrderPlaceComponent implements OnInit {
     private userService: UserService,
     private cartService: CartService,
     private alertService: AlertService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private currencyService: CurrencyService
+
 
   ) { }
 
@@ -45,7 +48,17 @@ export class OrderPlaceComponent implements OnInit {
 
   public placeOrder() {
     if (this.testNumber()) {
-      this.ordersService.placeOrder(this.cartService.getCart(), (data) => {
+      console.log(this.cartService.getCart());
+      let order = {
+        user: this.userService.getUser().id,
+        currecny: this.currencyService.getActiveCurrency().id,
+        usdPerCurrency: this.currencyService.getActiveCurrency().usdPerCurrency,
+        cart: this.cartService.getCart(),
+        amountPaid: this.currencyService.getPriceInActiveCurrency(this.cartService.getCartSum()),
+        shippingCost:  this.currencyService.getPriceInActiveCurrency(this.cartService.getCartShipping())
+      }
+      console.log(order);
+      this.ordersService.placeOrder(order, (data) => {
 
       });
     } else {

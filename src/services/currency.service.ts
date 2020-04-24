@@ -6,7 +6,7 @@ interface Currency {
   currency: string,
   mark: string,
   active: boolean,
-  UsdPerCurrency: number
+  usdPerCurrency: number
 }
 
 @Injectable({
@@ -20,14 +20,14 @@ export class CurrencyService {
       currency: "USD",
       mark: "$",
       active: false,
-      UsdPerCurrency: 1
+      usdPerCurrency: 1
     },
     {
       id: 1,
       currency: "EUR",
       mark: "€",
       active: true,
-      UsdPerCurrency: 1.1
+      usdPerCurrency: 1.1
     }
   ];
 
@@ -64,7 +64,7 @@ export class CurrencyService {
   }
 
   public getPriceInActiveCurrency (basePrice) {
-    return (Math.round((basePrice / this.activeCurrency.UsdPerCurrency) * 100) / 100).toFixed(2);
+    return (Math.round((basePrice / this.activeCurrency.usdPerCurrency) * 100) / 100).toFixed(2);
   }
 
   public getActiveCurrenyMark () {
