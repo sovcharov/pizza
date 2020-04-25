@@ -83,6 +83,9 @@ export class CartService {
 
   public changeQty(index, x) {
     this.cart[index].qty += x;
+    if (!this.cart[index].qty) {
+      this.cart[index].qty = 1;
+    }
   }
 
   public deletePizza(index) {
