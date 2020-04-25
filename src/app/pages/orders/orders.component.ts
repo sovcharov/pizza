@@ -15,6 +15,8 @@ export class OrdersComponent implements OnInit {
 
 
   orders: any = [];
+  public loading: boolean = false;
+
   constructor(
     private currencyService: CurrencyService,
     private inventoryService: InventoryService,
@@ -30,6 +32,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders(user){
+    this.loading = true;
     this.ordersService.getOrders(user, data => {
       for (let i = 0; i < data.length; i += 1) {
         data[i].show = false;
@@ -37,6 +40,7 @@ export class OrdersComponent implements OnInit {
         data[i].cart = [];
       }
       this.orders = data;
+      this.loading = false;
     });
   }
 
@@ -54,7 +58,6 @@ export class OrdersComponent implements OnInit {
       this.inventoryService.getMenu(data => {
         this.ordersService.getOrder(id, data => {
           this.orders[index].cart = data;
-          console.log(this.orders);
           this.orders[index].loading = false;
           this.orders[index].show = !this.orders[index].show;
         });

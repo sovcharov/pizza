@@ -1,23 +1,29 @@
 <div class = "container">
   <h1>Place your order</h1>
-  <p  *ngIf = "!getCartLength()">Your Cart is empty!</p>
-  <a *ngIf = "!getCartLength()" routerLink="/menu" class="btn btn-outline-primary btn-sm">Choose your pizza here</a>
-  <div class="row" *ngIf = "getCartLength()">
-    <div class = "col-md-10">
-      <form>
-        <div class="form-group">
-          <label for="inputAddress">Deliver to address:</label>
-          <input type="text" class="form-control" id="inputAddress" [(ngModel)]="user.address" value="{{user.address}}" placeholder="1234 Main St" name = "address">
-        </div>
-        <div class="form-group">
-          <label for="inputPhone">Contact Phone (ex. +71234567890):</label>
-          <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="user.phone" [ngClass] = "{'is-invalid': !testNumber(), 'is-valid': testNumber()}" placeholder="Phone" name = "phone">
-        </div>
-      </form>
-      <button (click)="placeOrder()" class="btn btn-primary">Confirm order</button>
-    </div>
-    <div class="col-md-2">
-        <app-cart-summary></app-cart-summary>
+  <div *ngIf = "loading"  class = "flex-center-vertically text-center">
+    <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div *ngIf = "!loading">
+    <p  *ngIf = "!getCartLength()">Your Cart is empty!</p>
+    <a *ngIf = "!getCartLength()" routerLink="/menu" class="btn btn-outline-primary btn-sm">Choose your pizza here</a>
+    <div class="row" *ngIf = "getCartLength()">
+      <div class = "col-md-10">
+        <form>
+          <div class="form-group">
+            <label for="inputAddress">Deliver to address:</label>
+            <input type="text" class="form-control" id="inputAddress" [(ngModel)]="user.address" value="{{user.address}}" placeholder="1234 Main St" name = "address">
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">Contact Phone (ex. +71234567890):</label>
+            <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="user.phone" [ngClass] = "{'is-invalid': !testNumber(), 'is-valid': testNumber()}" placeholder="Phone" name = "phone">
+          </div>
+        </form>
+        <button (click)="placeOrder()" class="btn btn-primary">Confirm order</button>
+      </div>
+      <div class="col-md-2">
+          <app-cart-summary></app-cart-summary>
+      </div>
     </div>
   </div>
 

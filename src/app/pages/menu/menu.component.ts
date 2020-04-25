@@ -13,6 +13,8 @@ export class MenuComponent implements OnInit {
   menu = [];
   activeCurrency: any;
   public currencies = [];
+  public loading: boolean = false;
+
 
   constructor(
     private inventoryService: InventoryService,
@@ -28,8 +30,10 @@ export class MenuComponent implements OnInit {
   }
 
   public getMenu() {
+    this.loading = true;
     return this.inventoryService.getMenu(data => {
       this.menu = data;
+      this.loading = false;
     });
   }
 

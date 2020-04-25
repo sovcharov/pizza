@@ -31,7 +31,7 @@ export class OrderPlaceComponent implements OnInit {
     phone: ""
   };
 
-  orderSaving: boolean = false;
+  public loading: boolean = false;
 
   ngOnInit(): void {
     this.getUser();
@@ -52,7 +52,7 @@ export class OrderPlaceComponent implements OnInit {
 
   public placeOrder() {
     if (this.testNumber()) {
-      this.orderSaving = true;
+      this.loading = true;
       let order = {
         user: this.userService.getUser().id,
         currecny: this.currencyService.getActiveCurrency().id,
@@ -63,14 +63,12 @@ export class OrderPlaceComponent implements OnInit {
         address: this.user.address,
         phone: this.user.phone
       }
-      console.log(order);
-      // this.ordersService.placeOrder(order, (data) => {
-      //   console.info(data);
-      //   this.orderSaving = false;
-      //   this.router.navigateByUrl("/orders");
-      //   this.cartService.clearCart();
-      //
-      // });
+      this.ordersService.placeOrder(order, (data) => {
+        this.loading = false;
+        this.router.navigateByUrl("/orders");
+        this.alertService.addAlert({alertClass: 'success',text: 'Order Placed',comment: "Thank you for you order",});
+        this.cartService.clearCart();
+      });
     } else {
       this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Stick to proper format',});
     }
