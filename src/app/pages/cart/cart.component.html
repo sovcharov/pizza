@@ -18,7 +18,14 @@
             <th scope="row">{{i}}</th>
             <td>{{getPizzaName(pizza.itemId)}}</td>
             <td>{{getPriceInActiveCurrency(pizza.price)}}</td>
-            <td>{{pizza.qty}}</td>
+            <td>
+              <div class="btn-group  btn-group-sm mr-2" role="group" aria-label="First group">
+                <button (click)="changeQty(pizza.itemId, -1)" type="button" class="btn btn-light">-</button>
+                <button type="button" class="btn btn-light">{{pizza.qty}}</button>
+                <button (click)="changeQty(pizza.itemId, +1)" type="button" class="btn btn-light">+</button>
+              </div>
+              <button (click)="deletePizza(pizza.itemId)"type="button" class="btn btn-sm btn-light"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </td>
           </tr>
         </ng-container>
 
