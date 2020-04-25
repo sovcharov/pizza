@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserService } from './../../../services/user.service';
 import { CartService } from './../../../services/cart.service';
 import { AlertService } from './../../../services/alert.service';
@@ -17,6 +19,7 @@ export class OrderPlaceComponent implements OnInit {
     private userService: UserService,
     private cartService: CartService,
     private alertService: AlertService,
+    private router: Router,
     private ordersService: OrdersService,
     private currencyService: CurrencyService
 
@@ -27,6 +30,8 @@ export class OrderPlaceComponent implements OnInit {
     address: "",
     phone: ""
   };
+
+  orderSaving: boolean = false;
 
   ngOnInit(): void {
     this.getUser();
@@ -47,6 +52,7 @@ export class OrderPlaceComponent implements OnInit {
 
   public placeOrder() {
     if (this.testNumber()) {
+      this.orderSaving = true;
       let order = {
         user: this.userService.getUser().id,
         currecny: this.currencyService.getActiveCurrency().id,
@@ -57,9 +63,14 @@ export class OrderPlaceComponent implements OnInit {
         address: this.user.address,
         phone: this.user.phone
       }
-      this.ordersService.placeOrder(order, (data) => {
-        console.info(data);
-      });
+      console.log(order);
+      // this.ordersService.placeOrder(order, (data) => {
+      //   console.info(data);
+      //   this.orderSaving = false;
+      //   this.router.navigateByUrl("/orders");
+      //   this.cartService.clearCart();
+      //
+      // });
     } else {
       this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Stick to proper format',});
     }

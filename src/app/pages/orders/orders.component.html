@@ -35,14 +35,14 @@
               <ng-container class="" *ngFor = "let pizza of order.cart; let j = index" >
                 <tr>
                   <td>
-                    Pizza {{getPizzaName(pizza.itemId)}} Price: {{(pizza.price)}}{{getCurrencyMark(order.currency)}} Qty: {{pizza.qty}}
+                    Pizza {{getPizzaName(pizza.itemId)}}, Price: {{(pizza.price)}} {{getCurrencyMark(order.currency)}}, Qty: {{pizza.qty}}
                   </td>
 
                 </tr>
               </ng-container>
               <tr>
                 <td colspan = "6">
-                  Delivery cost: {{order.shippingCost}}{{getCurrencyMark(order.currency)}}
+                  Delivery cost: {{order.shippingCost}} {{getCurrencyMark(order.currency)}}
                 </td>
               </tr>
               <tr>
