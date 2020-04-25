@@ -45,8 +45,10 @@ export class OrdersComponent implements OnInit {
     if (this.orders[index].cart.length) {
       this.orders[index].show = !this.orders[index].show;
     } else {
+      this.orders[index].loading = true;
       this.ordersService.getOrder(id, data => {
         this.orders[index].cart = data;
+        this.orders[index].loading = false;
         this.orders[index].show = !this.orders[index].show;
       });
     }
