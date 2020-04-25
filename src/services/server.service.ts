@@ -19,7 +19,7 @@ export class ServerService {
   }
 
   public getOrders (user) {
-    return this.http.get('./assets/data/testOrders.json');
+    return this.http.get<{data: any}>(`${this.host}/api/getorders/${user}`);
   }
 
   public getOrder (orderId) {

@@ -19,7 +19,7 @@
             <td>{{i}}</td>
             <td>{{order.date}}</td>
             <td>{{order.amountPaid}} {{getCurrencyMark(order.currency)}}</td>
-            <td>{{order.delivered}}</td>
+            <td>{{getDeliveredInfo(order.delivered)}}</td>
             <td>
               <button *ngIf = "!order.show" (click) = "showOrder(order.id, i)" class="btn btn-light"><i class="fa fa-angle-down"></i></button>
 

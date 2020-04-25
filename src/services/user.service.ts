@@ -15,7 +15,7 @@ interface User {
 export class UserService {
 
   private user: User = {
-    id: 0,
+    id: 1,
     firstName: "John",
     lastName: "Doe",
     address: "123 Main st. #12, leave at the door",

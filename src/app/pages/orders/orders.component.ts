@@ -75,4 +75,8 @@ export class OrdersComponent implements OnInit {
     this.router.navigateByUrl("/cart");
   }
 
+  public getDeliveredInfo(delivered) {
+    return delivered ? 'Yes' : 'No';
+  }
+
 }

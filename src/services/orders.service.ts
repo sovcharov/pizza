@@ -21,9 +21,10 @@ export class OrdersService {
   }
 
   public getOrders (user, callback) {
-    this.serverService.getOrders(user).subscribe(res=>{
-      this.orders = res;
-      callback(res);
+    this.serverService.getOrders(user).subscribe(res => {
+      this.orders = res.data;
+      console.log(this.orders);
+      callback(this.orders);
     });
   }
 

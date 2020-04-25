@@ -22,7 +22,6 @@ export class CartService {
   }
 
   public addToCart (item) {
-    console.log(item);
     if(this.cart.length) {
       let found = false;
       for(let i = 0; i < this.cart.length; i += 1) {
@@ -38,7 +37,6 @@ export class CartService {
     } else {
       this.cart[this.cart.length] = {itemId: (item.id), qty: item.qty || 1, price: parseFloat(item.price)};
     }
-    console.log(this.cart);
   }
 
   public getCartLength() {
