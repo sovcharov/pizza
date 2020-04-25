@@ -47,7 +47,6 @@ export class OrderPlaceComponent implements OnInit {
 
   public placeOrder() {
     if (this.testNumber()) {
-      console.log(this.cartService.getCart());
       let order = {
         user: this.userService.getUser().id,
         currecny: this.currencyService.getActiveCurrency().id,
@@ -59,7 +58,7 @@ export class OrderPlaceComponent implements OnInit {
         phone: this.user.phone
       }
       this.ordersService.placeOrder(order, (data) => {
-
+        console.info(data);
       });
     } else {
       this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Stick to proper format',});

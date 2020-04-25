@@ -15,7 +15,7 @@ export class ServerService {
   }
 
   public placeOrder (order) {
-    // return this.http.post(`${this.host}/api/getmenu`,{cart: {}});
+    return this.http.post(`${this.host}/api/saveorder`, {order: order});
   }
 
   public getOrders (user) {
