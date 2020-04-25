@@ -33,7 +33,7 @@
             </td>
             <td colspan = "6">
             <table class="table table-sm table-borderless">
-              <ng-container class="" *ngFor = "let pizza of order.cart; let i = index" >
+              <ng-container class="" *ngFor = "let pizza of order.cart; let j = index" >
                 <tr>
                   <td>
                     Pizza {{getPizzaName(pizza.itemId)}} Price: {{(pizza.price)}}{{getCurrencyMark(order.currency)}} Qty: {{pizza.qty}}
@@ -43,7 +43,7 @@
               </ng-container>
               <tr>
                 <td colspan = "6">
-                  <button (click) = "showOrder(order.id, i)" class="btn btn-light">Order again</button>
+                  <button (click) = "orderAgain(order.cart)" class="btn btn-light">Order again</button>
                 </td>
               </tr>
             </table>

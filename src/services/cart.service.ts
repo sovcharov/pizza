@@ -22,22 +22,23 @@ export class CartService {
   }
 
   public addToCart (item) {
+    console.log(item);
     if(this.cart.length) {
       let found = false;
       for(let i = 0; i < this.cart.length; i += 1) {
         if(this.cart[i].itemId === item.id) {
-          this.cart[i].qty +=1;
+          this.cart[i].qty += item.qty || 1;
           this.cart[i].price = item.price;
           found = true;
         }
       }
       if (!found) {
-        this.cart[this.cart.length] = {itemId: (item.id), qty: 1, price: parseFloat(item.price)};
+        this.cart[this.cart.length] = {itemId: (item.id), qty: item.qty || 1, price: parseFloat(item.price)};
       }
     } else {
-      this.cart[this.cart.length] = {itemId: (item.id), qty: 1, price: parseFloat(item.price)};
+      this.cart[this.cart.length] = {itemId: (item.id), qty: item.qty || 1, price: parseFloat(item.price)};
     }
-    // console.log(this.cart);
+    console.log(this.cart);
   }
 
   public getCartLength() {

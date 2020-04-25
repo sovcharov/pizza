@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { CurrencyService } from './../../../services/currency.service';
 import { OrdersService } from './../../../services/orders.service';
 import { InventoryService } from './../../../services/inventory.service';
+import { CartService } from './../../../services/cart.service';
+
 
 
 @Component({
@@ -17,7 +20,9 @@ export class OrdersComponent implements OnInit {
   constructor(
     private currencyService: CurrencyService,
     private inventoryService: InventoryService,
+    private cartService: CartService,
     private userService: UserService,
+    private router: Router,
     private ordersService: OrdersService
 
   ) { }
@@ -41,7 +46,7 @@ export class OrdersComponent implements OnInit {
   }
 
   public showOrder (id, index) {
-    console.log(id, index);
+    // console.log(id, index);
     if (this.orders[index].cart.length) {
       this.orders[index].show = !this.orders[index].show;
     } else {
@@ -56,6 +61,20 @@ export class OrdersComponent implements OnInit {
 
   public getPizzaName (id) {
     return this.inventoryService.getNameById(id);
+  }
+
+  public orderAgain (cart) {
+    for (let i = 0; i < cart.length; i += 1) {
+      this.inventoryService.getPriceInBaseCurrency(cart[i].itemId, (data)=>{
+        let item = {
+          id: cart[i].itemId,
+          qty: cart[i].qty,
+          price: data
+        };
+        this.cartService.addToCart(item);
+      });
+    }
+    this.router.navigateByUrl("/cart");
   }
 
 }

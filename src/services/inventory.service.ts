@@ -47,5 +47,20 @@ export class InventoryService {
     }
   }
 
+  private findPizzaAsync (id, callback) {
+    for (let i = 0; i < this.menu.length; i += 1) {
+      if (this.menu[i].id === id) {
+        callback(this.menu[i]);
+        break;
+      }
+    }
+  }
+
+  public getPriceInBaseCurrency (id, callback) {
+    this.findPizzaAsync(id, data => {
+      callback(data.price);
+    });
+  }
+
 
 }
