@@ -7,7 +7,7 @@
       <form>
         <div class="form-group">
           <label for="inputAddress">Deliver to address:</label>
-          <input type="text" class="form-control" id="inputAddress" value="{{user.address}}" placeholder="1234 Main St">
+          <input type="text" class="form-control" id="inputAddress" [(ngModel)]="user.address" value="{{user.address}}" placeholder="1234 Main St" name = "address">
         </div>
         <div class="form-group">
           <label for="inputPhone">Contact Phone (ex. +71234567890):</label>
