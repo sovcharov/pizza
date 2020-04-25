@@ -13,7 +13,7 @@ export class InventoryService {
 
   private loadMenu (callback) {
     this.serverService.getMenu().subscribe(res=>{
-      callback(res);
+      callback(res.data);
     });
   }
 
@@ -22,7 +22,7 @@ export class InventoryService {
       callback(this.menu);
     } else {
       this.loadMenu((data)=>{
-        this.menu = data.data;
+        this.menu = data;
         callback(this.menu);
       });
     }

@@ -11,7 +11,7 @@ export class ServerService {
   constructor(public http: HttpClient) { }
 
   public getMenu(){
-    return this.http.get(`${this.host}/api/getmenu`);
+    return this.http.get<{data: any}>(`${this.host}/api/getmenu`);
   }
 
   public placeOrder (order) {
@@ -23,7 +23,7 @@ export class ServerService {
   }
 
   public getOrder (orderId) {
-    //return this.http.get('./assets/data/test.json');
+    return this.http.get<{data: any}>(`${this.host}/api/getorder/${orderId}`);
   }
 
 }

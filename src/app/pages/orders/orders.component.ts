@@ -34,6 +34,7 @@ export class OrdersComponent implements OnInit {
       for (let i = 0; i < data.length; i += 1) {
         data[i].show = false;
         data[i].loading = false;
+        data[i].cart = [];
       }
       this.orders = data;
     });
@@ -45,15 +46,19 @@ export class OrdersComponent implements OnInit {
 
   public showOrder (id, index) {
     // console.log(id, index);
+    // console.log(this.orders);
     if (this.orders[index].cart.length) {
       this.orders[index].show = !this.orders[index].show;
     } else {
       this.orders[index].loading = true;
-      this.ordersService.getOrder(id, data => {
-        this.orders[index].cart = data;
-        this.orders[index].loading = false;
-        this.orders[index].show = !this.orders[index].show;
-      });
+      this.inventoryService.getMenu(data => {
+        this.ordersService.getOrder(id, data => {
+          this.orders[index].cart = data;
+          console.log(this.orders);
+          this.orders[index].loading = false;
+          this.orders[index].show = !this.orders[index].show;
+        });
+      })
     }
   }
 

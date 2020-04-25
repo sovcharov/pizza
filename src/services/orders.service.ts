@@ -28,9 +28,9 @@ export class OrdersService {
     });
   }
 
-  public getOrder (user, callback) {
-    this.serverService.getOrders(user).subscribe(res=>{
-      callback(res[0].cart);
+  public getOrder (order, callback) {
+    this.serverService.getOrder(order).subscribe(res=>{
+      callback(res.data);
     });
   }
 
