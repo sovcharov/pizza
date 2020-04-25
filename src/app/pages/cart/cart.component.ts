@@ -57,4 +57,11 @@ export class CartComponent implements OnInit {
     return this.currencyService.getActiveCurrenyMark();
   }
 
+  public changeQty (index, x) {
+    return this.cartService.changeQty(index, x);
+  }
+  public deletePizza (index) {
+    return this.cartService.deletePizza(index);
+  }
+
 }

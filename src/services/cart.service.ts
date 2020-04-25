@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { InventoryService } from './inventory.service';
 
 interface CartItem {
-  itemId: string,
+  itemId: number,
   qty: number,
   price: number
 }
@@ -81,5 +81,12 @@ export class CartService {
     return (sum>=30) ? sum : sum + this.getCartShipping();
   }
 
+  public changeQty(index, x) {
+    this.cart[index].qty += x;
+  }
+
+  public deletePizza(index) {
+    this.cart.splice(index,1);
+  }
 
 }
