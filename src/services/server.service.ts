@@ -6,14 +6,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServerService {
 
+  host = 'http://localhost:3339';
+
   constructor(public http: HttpClient) { }
 
   public getMenu(){
-    return this.http.get('./assets/data/testMenu.json');
+    return this.http.get(`${this.host}/api/getmenu`);
   }
 
   public placeOrder (order) {
-    // return this.http.post('url',{cart: cart});
+    // return this.http.post(`${this.host}/api/getmenu`,{cart: {}});
   }
 
   public getOrders (user) {

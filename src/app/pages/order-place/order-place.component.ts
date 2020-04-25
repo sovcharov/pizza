@@ -58,7 +58,6 @@ export class OrderPlaceComponent implements OnInit {
         address: this.user.address,
         phone: this.user.phone
       }
-      console.log(order);
       this.ordersService.placeOrder(order, (data) => {
 
       });

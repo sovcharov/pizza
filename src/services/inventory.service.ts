@@ -22,7 +22,7 @@ export class InventoryService {
       callback(this.menu);
     } else {
       this.loadMenu((data)=>{
-        this.menu = data;
+        this.menu = data.data;
         callback(this.menu);
       });
     }

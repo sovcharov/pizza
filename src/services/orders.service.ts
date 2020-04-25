@@ -15,7 +15,7 @@ export class OrdersService {
   }
 
   public placeOrder(order, callback) {
-    // this.serverService.placeOrder(cart).subscribe(res=>{
+    // this.serverService.placeOrder(order).subscribe(res=>{
     //   callback(res);
     // });
   }
