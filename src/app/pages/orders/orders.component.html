@@ -43,6 +43,11 @@
               </ng-container>
               <tr>
                 <td colspan = "6">
+                  Delivery cost: {{order.shippingCost}}{{getCurrencyMark(order.currency)}}
+                </td>
+              </tr>
+              <tr>
+                <td colspan = "6">
                   <button (click) = "orderAgain(order.cart)" class="btn btn-light">Order again</button>
                 </td>
               </tr>

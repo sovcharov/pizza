@@ -6,8 +6,6 @@ import { OrdersService } from './../../../services/orders.service';
 import { InventoryService } from './../../../services/inventory.service';
 import { CartService } from './../../../services/cart.service';
 
-
-
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
