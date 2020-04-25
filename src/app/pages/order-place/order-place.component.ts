@@ -28,7 +28,6 @@ export class OrderPlaceComponent implements OnInit {
     phone: ""
   };
 
-
   ngOnInit(): void {
     this.getUser();
   }
@@ -52,17 +51,19 @@ export class OrderPlaceComponent implements OnInit {
       let order = {
         user: this.userService.getUser().id,
         currecny: this.currencyService.getActiveCurrency().id,
-        usdPerCurrency: this.currencyService.getActiveCurrency().usdPerCurrency,
+        usdPerCurrency: (this.currencyService.getActiveCurrency().usdPerCurrency),
         cart: this.cartService.getCart(),
-        amountPaid: this.currencyService.getPriceInActiveCurrency(this.cartService.getCartSum()),
-        shippingCost:  this.currencyService.getPriceInActiveCurrency(this.cartService.getCartShipping())
+        amountPaid: parseFloat(this.currencyService.getPriceInActiveCurrency(this.cartService.getCartSum())),
+        shippingCost:  parseFloat(this.currencyService.getPriceInActiveCurrency(this.cartService.getCartShipping())),
+        address: this.user.address,
+        phone: this.user.phone
       }
       console.log(order);
       this.ordersService.placeOrder(order, (data) => {
 
       });
     } else {
-      this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Mistake in number',});
+      this.alertService.addAlert({alertClass: 'danger',text: 'Wrong Phone Number',comment: 'Stick to proper format',});
     }
   }
 
