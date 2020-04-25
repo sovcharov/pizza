@@ -6,7 +6,9 @@ import { ServerService } from './server.service';
 })
 export class InventoryService {
 
-  constructor(private serverService: ServerService) { }
+  constructor(
+    private serverService: ServerService
+  ) { }
   public menu: any = [];
 
   private loadMenu (callback) {
@@ -27,11 +29,22 @@ export class InventoryService {
   }
 
   public getNameById (id) {
-      for (let i = 0; i < this.menu.length; i += 1) {
-        if (this.menu[i].id === id) {
-          return this.menu[i].name;
-        }
+    if(this.menu.length) {
+      return this.findPizza(id).name;
+    } else {
+      this.loadMenu((data)=>{
+        this.menu = data;
+        return this.findPizza(id).name;
+      });
+    }
+  }
+
+  private findPizza (id) {
+    for (let i = 0; i < this.menu.length; i += 1) {
+      if (this.menu[i].id === id) {
+        return this.menu[i];
       }
+    }
   }
 
 

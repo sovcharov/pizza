@@ -9,9 +9,14 @@
     "shippingCost": "5",
     "cart": [
       {
-        "itemId": 3,
+        "itemId": "3",
         "qty": 2,
         "price": 8
+      },
+      {
+        "itemId": "2",
+        "qty": 1,
+        "price": 10
       }
     ],
     "delivered": true

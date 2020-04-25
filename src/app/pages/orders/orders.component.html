@@ -7,24 +7,47 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Date</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Delivered</th>
-            <th scope="col"></th>
+            <th class="col-xs-1">Id</th>
+            <th class="col-xs-3">Date</th>
+            <th class="col-xs-2">Amount</th>
+            <th class="col-xs-2">Delivered</th>
+            <th class="col-xs-2"></th>
           </tr>
         </thead>
         <ng-container class="" *ngFor = "let order of orders; let i = index" >
           <tr>
-            <th scope="row">{{i}}</th>
+            <td>{{i}}</td>
             <td>{{order.date}}</td>
             <td>{{order.amountPaid}} {{getCurrencyMark(order.currency)}}</td>
             <td>{{order.delivered}}</td>
-            <th scope="col">
+            <td>
               <button *ngIf = "!order.show" (click) = "showOrder(order.id, i)" class="btn btn-light"><i class="fa fa-angle-down"></i></button>
 
               <button *ngIf = "order.show" (click) = "showOrder(order.id, i)" class="btn btn-light"><i class="fa fa-angle-up"></i></button>
-            </th>
+            </td>
+
+          </tr>
+
+          <tr *ngIf = "order.show">
+            <td>
+            </td>
+            <td colspan = "6">
+            <table class="table table-sm table-borderless">
+              <ng-container class="" *ngFor = "let pizza of order.cart; let i = index" >
+                <tr>
+                  <td>
+                    Pizza {{getPizzaName(pizza.itemId)}} Price: {{(pizza.price)}}{{getCurrencyMark(order.currency)}} Qty: {{pizza.qty}}
+                  </td>
+
+                </tr>
+              </ng-container>
+              <tr>
+                <td colspan = "6">
+                  <button (click) = "showOrder(order.id, i)" class="btn btn-light">Order again</button>
+                </td>
+              </tr>
+            </table>
+            </td>
           </tr>
         </ng-container>
       </table>

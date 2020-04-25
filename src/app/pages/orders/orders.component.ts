@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../../services/user.service';
 import { CurrencyService } from './../../../services/currency.service';
 import { OrdersService } from './../../../services/orders.service';
+import { InventoryService } from './../../../services/inventory.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class OrdersComponent implements OnInit {
   orders: any = [];
   constructor(
     private currencyService: CurrencyService,
+    private inventoryService: InventoryService,
     private userService: UserService,
     private ordersService: OrdersService
 
@@ -28,6 +30,7 @@ export class OrdersComponent implements OnInit {
     this.ordersService.getOrders(user, data => {
       for (let i = 0; i < data.length; i += 1) {
         data[i].show = false;
+        data[i].loading = false;
       }
       this.orders = data;
     });
@@ -47,6 +50,10 @@ export class OrdersComponent implements OnInit {
         this.orders[index].show = !this.orders[index].show;
       });
     }
+  }
+
+  public getPizzaName (id) {
+    return this.inventoryService.getNameById(id);
   }
 
 }

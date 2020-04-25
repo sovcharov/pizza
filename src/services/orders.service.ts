@@ -22,18 +22,15 @@ export class OrdersService {
 
   public getOrders (user, callback) {
     this.serverService.getOrders(user).subscribe(res=>{
-      console.log(res);
       this.orders = res;
       callback(res);
     });
   }
 
   public getOrder (user, callback) {
-    // this.serverService.getOrders(user).subscribe(res=>{
-    //   console.log(res);
-    //   this.orders = res;
-    //   callback(res);
-    // });
+    this.serverService.getOrders(user).subscribe(res=>{
+      callback(res[0].cart);
+    });
   }
 
 }
