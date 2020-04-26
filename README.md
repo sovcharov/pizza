@@ -11,6 +11,7 @@ git clone 'https://github.com/yahooserg/pizza.git'
 npm install
 
 ==================
+
 to start: ng serve
 
 to test: ng test
