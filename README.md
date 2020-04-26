@@ -2,6 +2,8 @@
 
 To try app go to http://52.23.88.1:3339
 
+To see server side go to https://github.com/yahooserg/pizzaserver
+
 To install on your machine do following steps:
 
 To install app:
@@ -11,6 +13,8 @@ git clone 'https://github.com/yahooserg/pizza.git'
 npm install
 
 ==================
+
+Assuming you have Angular-cli 9.9.1
 
 to start: ng serve
 
