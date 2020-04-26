@@ -10,13 +10,19 @@ git clone 'https://github.com/yahooserg/pizza.git'
 
 npm install
 
+==================
 to start: ng serve
-check below how to test and build.
+
+to test: ng test
+
+check below how to build.
 
 To be able to load data you'll have to install server app from here:
 https://github.com/yahooserg/pizzaserver
 
 
+
+==============================================================
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
 ## Development server
