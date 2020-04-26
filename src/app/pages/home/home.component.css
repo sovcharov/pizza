@@ -3,7 +3,7 @@
     position: relative;
     width: 100%;
     height: 600px;
-    background: url(/assets/images/pizzaBig.png) no-repeat center center scroll;
+    background: url(/assets/images/pizza.png) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
