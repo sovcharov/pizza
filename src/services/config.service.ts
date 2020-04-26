@@ -12,7 +12,7 @@ export class ConfigService {
 
   constructor() {
     if(environment.production) {
-      this.config.host = 'https://52.23.88.1:3001'
+      this.config.host = 'https://52.23.88.1:3339'
     } else {
       this.config.host = 'http://localhost:3339'
     }
