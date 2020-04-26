@@ -1,5 +1,22 @@
 # Pizza
 
+To try app go to http://52.23.88.1:3339
+
+To install on your machine do following steps:
+
+To install app: 
+
+git clone 'https://github.com/yahooserg/pizza.git' 
+
+npm install
+
+to start: ng serve
+check below how to test and build.
+
+To be able to load date you'll have to install server app from here:
+https://github.com/yahooserg/pizzaserver
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
 ## Development server
