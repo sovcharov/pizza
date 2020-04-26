@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from './config.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServerService {
 
-  host = 'http://localhost:3339';
+  host: string = 'http://localhost:3339';
 
-  constructor(public http: HttpClient) { }
+  constructor(
+    public http: HttpClient,
+    private configService: ConfigService
+  ) {
+    this.host = configService.config.host;
+  }
 
   public getMenu(){
     return this.http.get<{data: any}>(`${this.host}/api/getmenu`);
